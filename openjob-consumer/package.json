@@ -1,0 +1,18 @@
+{
+  "name": "openjob-consumer",
+  "version": "1.0.0",
+  "description": "OpenJob RabbitMQ Consumer",
+  "main": "src/consumer/applicationConsumer.js",
+  "scripts": {
+    "start": "node src/consumer/applicationConsumer.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.10.3",
+    "dotenv": "^16.5.0",
+    "nodemailer": "^6.9.13",
+    "pg": "^8.11.5"
+  }
+}

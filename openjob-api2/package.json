@@ -1,0 +1,36 @@
+{
+  "name": "openjob-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "setup": "node setup.js",
+    "start": "node src/server.js",
+    "start:dev": "nodemon src/server.js",
+    "migrate": "node-pg-migrate",
+    "test:newman": "npx newman run \"Postman_Collection.json\" --env-var \"port=3000\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "amqplib": "^2.0.1",
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "joi": "^18.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "multer": "^2.1.1",
+    "nanoid": "^5.1.11",
+    "nodemailer": "^8.0.7",
+    "pg": "^8.21.0",
+    "redis": "^5.12.1"
+  },
+  "devDependencies": {
+    "newman": "^6.2.2",
+    "node-pg-migrate": "^8.0.4",
+    "nodemon": "^3.1.14"
+  }
+}
