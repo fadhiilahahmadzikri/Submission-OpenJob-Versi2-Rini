@@ -2,13 +2,23 @@ const fs = require('fs');
 const path = require('path');
 
 const collectionPath = path.join(__dirname, 'Postman_Collection.json');
-const absolutePdfPath = 'D:\\\\dicoding-codingcamp\\\\Submission-11\\\\punyarini\\\\Submission-OpenJob-Versi2\\\\openjob-api2\\\\uploads\\\\sample-resume.pdf';
+// Sekarang menggunakan path.join agar otomatis mendeteksi folder dimana script ini dijalankan
+const absolutePdfPath = path.join(__dirname, 'uploads', 'sample-resume.pdf').replace(/\\/g, '\\\\');
+
+if (!fs.existsSync(collectionPath)) {
+    console.error('❌ File Postman_Collection.json tidak ditemukan!');
+    process.exit(1);
+}
 
 let content = fs.readFileSync(collectionPath, 'utf8');
 
-// Replace the Linux path with our local Windows path
-// Note: Use 4 backslashes for JSON escaping of a Windows path
-content = content.replace(/\/home\/aras\/javascript-projects\/271-openjob\/sample-resume\.pdf/g, absolutePdfPath);
+// Mencari pattern path lama (apapun isinya) dan menggantinya dengan path laptop Rini saat ini
+// Kita cari pattern yang mirip dengan path sample-resume.pdf di dalam JSON
+const pathRegex = /"value":\s*".*?sample-resume\.pdf"/g;
+const newPathValue = `"value": "${absolutePdfPath}"`;
+
+content = content.replace(pathRegex, newPathValue);
 
 fs.writeFileSync(collectionPath, content);
-console.log('✅ Postman collection patched with local PDF path');
+console.log('✅ Postman collection berhasil di-patch!');
+console.log('📍 Path baru:', absolutePdfPath);

@@ -30,6 +30,13 @@ exports.up = (pgm) => {
       default: pgm.func('current_timestamp'),
     },
   });
+
+  // ADD UNIQUE CONSTRAINT
+  pgm.addConstraint(
+    'applications',
+    'unique_user_job_app',
+    'UNIQUE(user_id, job_id)'
+  );
 };
 
 exports.down = (pgm) => {
